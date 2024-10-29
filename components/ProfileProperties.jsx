@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import deleteProperty from '@/app/actions/deleteProperty';
 
 const ProfileProperties = ({ properties: initialProperties }) => {
@@ -15,17 +15,18 @@ const ProfileProperties = ({ properties: initialProperties }) => {
 
     if (!confirmed) return;
 
-    const deletePropertyById = deleteProperty.bind(null, propertyId);
+    // const deletePropertyById = deleteProperty.bind(null, propertyId);
 
-    await deletePropertyById();
+    await deleteProperty(propertyId);
 
-    // toast.success('Property Deleted');
-
+    
     const updatedProperties = properties.filter(
       (property) => property._id !== propertyId
     );
-
+    
     setProperties(updatedProperties);
+
+    toast.success('Property Deleted');
   };
 
   return properties.map((property) => (
@@ -34,7 +35,7 @@ const ProfileProperties = ({ properties: initialProperties }) => {
         <Image
           className='h-32 w-full rounded-md object-cover'
           src={property.images[0]}
-          alt=''
+          alt='Property 1'
           width={500}
           height={100}
           priority={true}
