@@ -9,19 +9,20 @@ import {
 } from 'react-icons/fa'
 
 const PropertyCard = ({ property }) => {
-    const getRateDisplay = () => {
-        const {rates} = property
-        if (rates.monthly) {
-            return `$${rates.monthly.toLocaleString()}/mo`
-        } else if (rates.weekly) {
-            return `$${rates.weekly.toLocaleString()}/wk`
-        } else if (rates.nightly) {
-            return `$${rates.nightly.toLocaleString()}/night`
-        }
+  const getRateDisplay = () => {
+    const { rates } = property
+    if (rates.monthly) {
+      return `$${rates.monthly.toLocaleString()}/mo`
+    } else if (rates.weekly) {
+      return `$${rates.weekly.toLocaleString()}/wk`
+    } else if (rates.nightly) {
+      return `$${rates.nightly.toLocaleString()}/night`
     }
+  }
 
   return (
     <div className="rounded-xl shadow-md relative">
+      <Link href={`/properties/${property._id}`}>
       <Image
         src={property.images[0]}
         alt=""
@@ -30,6 +31,7 @@ const PropertyCard = ({ property }) => {
         sizes="100vw"
         className="w-full h-auto rounded-t-xl"
       />
+      </Link>
       <div className="p-4">
         <div className="text-left md:text-center lg:text-left mb-6">
           <div className="text-gray-600">{property.type}</div>
@@ -41,15 +43,15 @@ const PropertyCard = ({ property }) => {
 
         <div className="flex justify-center gap-4 text-gray-500 mb-4">
           <p>
-            <FaBed className="md:hidden lg:inline"/> {property.beds}{' '}
+            <FaBed className="md:hidden lg:inline" /> {property.beds}{' '}
             <span className="md:hidden lg:inline">Beds</span>
           </p>
           <p>
-          <FaBath className="md:hidden lg:inline"/> {property.baths}{' '}
+            <FaBath className="md:hidden lg:inline" /> {property.baths}{' '}
             <span className="md:hidden lg:inline">Baths</span>
           </p>
           <p>
-          <FaRulerCombined className="md:hidden lg:inline"/>
+            <FaRulerCombined className="md:hidden lg:inline" />
             {property.square_feet}{' '}
             <span className="md:hidden lg:inline">sqft</span>
           </p>
@@ -57,10 +59,10 @@ const PropertyCard = ({ property }) => {
 
         <div className="flex justify-center gap-4 text-green-900 text-sm mb-4">
           <p>
-            <FaMoneyBill className="md:hidden lg:inline"/> Weekly
+            <FaMoneyBill className="md:hidden lg:inline" /> Weekly
           </p>
           <p>
-          <FaMoneyBill className="md:hidden lg:inline"/> Monthly
+            <FaMoneyBill className="md:hidden lg:inline" /> Monthly
           </p>
         </div>
 
@@ -68,11 +70,10 @@ const PropertyCard = ({ property }) => {
 
         <div className="flex flex-col lg:flex-row justify-between mb-4">
           <div className="flex align-middle gap-2 mb-4 lg:mb-0">
-            <FaMapMarker className='text-orange-700 mt-1'/>
+            <FaMapMarker className="text-orange-700 mt-1" />
             <span className="text-orange-700">
               {' '}
-              {property.location.city}{' '}
-              {property.location.state}{' '}
+              {property.location.city} {property.location.state}{' '}
             </span>
           </div>
           <Link
