@@ -30,7 +30,7 @@ const PropertyMap = ({ property }) => {
     const fetchCoords = async () => {
       try {
         const res = await fromAddress(
-          `${property.location.street} {property.location.city} {property.location.state} {property.location.zipcode}`
+          `${property.location.street} ${property.location.city} ${property.location.state} ${property.location.zipcode}`
         )
 
         // Check geocode results
